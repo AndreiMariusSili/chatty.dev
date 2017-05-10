@@ -1,0 +1,199 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] CLI Version:  3.7.0
+[debug] Platform:     darwin
+[debug] Node Version: v6.10.2
+[debug] Time:         Tue May 09 2017 23:43:52 GMT+0200 (CEST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/chatty-3c23d  
+ Tue May 09 2017 23:43:52 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/chatty-3c23d/tokens  
+ Tue May 09 2017 23:43:53 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'chatty-3c23d'...
+[info] 
+[info] i  deploying functions
+[debug] > [functions] package.json contents: {
+  "name": "friendlychat-codelab",
+  "description": "Firebase SDK for Cloud Functions codelab",
+  "dependencies": {
+    "@google-cloud/translate": "^0.8.1",
+    "firebase-admin": "^4.1.1",
+    "firebase-functions": "^0.5.1"
+  }
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/chatty-3c23d?view=CONSUMER_VIEW  
+ Tue May 09 2017 23:43:55 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/chatty-3c23d?view=CONSUMER_VIEW  
+ Tue May 09 2017 23:43:55 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/chatty-3c23d  
+ Tue May 09 2017 23:43:56 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/chatty-3c23d/apiKeys  
+ Tue May 09 2017 23:43:56 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/chatty-3c23d/configs  
+ Tue May 09 2017 23:43:58 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] > [functions] runtime config materialized as: {
+  "firebase": {
+    "databaseURL": "https://chatty-3c23d.firebaseio.com",
+    "storageBucket": "chatty-3c23d.appspot.com",
+    "apiKey": "AIzaSyAbYBUdIQFFdIvUCJ_bLbL48GiDMUAhF3M",
+    "authDomain": "chatty-3c23d.firebaseapp.com"
+  }
+}
+[debug] > [functions] parsed triggers: [
+  {
+    "httpsTrigger": {},
+    "name": "addMessage",
+    "entryPoint": "addMessage"
+  },
+  {
+    "eventTrigger": {
+      "resource": "projects/_/instances/chatty-3c23d/refs/messages/{id}/msg",
+      "eventType": "providers/google.firebase.database/eventTypes/ref.write"
+    },
+    "name": "translateMessages",
+    "entryPoint": "translateMessages"
+  }
+]
+[info] i  functions: packaged functions (1.75 KB) for uploading
+[debug] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.chatty-3c23d.appspot.com  
+ Tue May 09 2017 23:44:00 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.chatty-3c23d.appspot.com/o?uploadType=media&name=firebase-functions-source ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 1797,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     defaultEncoding: 'utf8',
+     ranOut: false,
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/var/folders/8t/q7b3pkzs69ldl1mq3fypyh0h0000gn/T/firebase-functions-20216jyj75tJwa4Vi.zip',
+  fd: 19,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 1797 } 
+ Tue May 09 2017 23:44:01 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  starting release process (may take several minutes)...
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/projects/chatty-3c23d/locations/us-central1/functions  
+ Tue May 09 2017 23:44:01 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[info] i  functions: creating function translateMessages...
+[debug] Trigger is: 
+[info] i  functions: updating function addMessage...
+[debug] Trigger is: 
+[debug] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1beta2/projects/chatty-3c23d/locations/us-central1/functions { sourceArchiveUrl: 'gs://staging.chatty-3c23d.appspot.com/firebase-functions-source',
+  name: 'projects/chatty-3c23d/locations/us-central1/functions/translateMessages',
+  entryPoint: 'translateMessages',
+  eventTrigger: 
+   { resource: 'projects/_/instances/chatty-3c23d/refs/messages/{id}/msg',
+     eventType: 'providers/google.firebase.database/eventTypes/ref.write' } } 
+ Tue May 09 2017 23:44:02 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST PUT https://cloudfunctions.googleapis.com/v1beta2/projects/chatty-3c23d/locations/us-central1/functions/addMessage { sourceArchiveUrl: 'gs://staging.chatty-3c23d.appspot.com/firebase-functions-source',
+  name: 'projects/chatty-3c23d/locations/us-central1/functions/addMessage',
+  entryPoint: 'addMessage',
+  timeout: '60s',
+  availableMemoryMb: 256,
+  httpsTrigger: {} } 
+ Tue May 09 2017 23:44:02 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/projects/chatty-3c23d/locations/us-central1/functions  
+ Tue May 09 2017 23:44:03 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj  
+ Tue May 09 2017 23:44:03 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s  
+ Tue May 09 2017 23:44:03 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] <<< HTTP RESPONSE 200
+[debug] [functions] operation poll: translateMessages: create operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj is not done.
+[debug] [functions] operation poll: addMessage: update operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s is not done.
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj  
+ Tue May 09 2017 23:44:09 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s  
+ Tue May 09 2017 23:44:09 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] <<< HTTP RESPONSE 200
+[debug] [functions] operation poll: translateMessages: create operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj is not done.
+[debug] [functions] operation poll: addMessage: update operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s is not done.
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj  
+ Tue May 09 2017 23:44:14 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s  
+ Tue May 09 2017 23:44:14 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] <<< HTTP RESPONSE 200
+[debug] [functions] operation poll: translateMessages: create operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj is not done.
+[debug] [functions] operation poll: addMessage: update operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s is not done.
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj  
+ Tue May 09 2017 23:44:20 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s  
+ Tue May 09 2017 23:44:20 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] <<< HTTP RESPONSE 200
+[debug] [functions] operation poll: translateMessages: create operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj is not done.
+[debug] [functions] operation poll: addMessage: update operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s is not done.
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj  
+ Tue May 09 2017 23:44:26 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s  
+ Tue May 09 2017 23:44:26 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] <<< HTTP RESPONSE 200
+[debug] [functions] operation poll: translateMessages: create operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj is not done.
+[debug] [functions] operation poll: addMessage: update operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s is not done.
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj  
+ Tue May 09 2017 23:44:32 GMT+0200 (CEST)
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s  
+ Tue May 09 2017 23:44:32 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] <<< HTTP RESPONSE 200
+[debug] [functions] operation poll: translateMessages: create operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj is not done.
+[debug] [functions] operation poll: addMessage: update operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL2FkZE1lc3NhZ2UvZEE1MGw4cTZDM2s is done.
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj  
+ Tue May 09 2017 23:44:38 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] [functions] operation poll: translateMessages: create operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj is not done.
+[debug] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj  
+ Tue May 09 2017 23:44:44 GMT+0200 (CEST)
+[debug] <<< HTTP RESPONSE 200
+[debug] [functions] operation poll: translateMessages: create operations/Y2hhdHR5LTNjMjNkL3VzLWNlbnRyYWwxL3RyYW5zbGF0ZU1lc3NhZ2VzL0J3MXFwQmF6RGpj is not done.

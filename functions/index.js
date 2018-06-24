@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
-    return { next: verb(0), "throw": verb(1), "return": verb(2) };
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -47,7 +47,7 @@ exports.translateMesages = functions.database.ref('messages/{id}').onWrite(funct
                 snap = event.data;
                 console.log(snap.val());
                 console.log(snap.ref.key);
-                return [4 /*yield*/, translate.getLanguages()];
+                return [4, translate.getLanguages()];
             case 1:
                 langs = (_a.sent())[0];
                 console.log(langs);
@@ -55,7 +55,7 @@ exports.translateMesages = functions.database.ref('messages/{id}').onWrite(funct
                     var translation, location, data;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0: return [4 /*yield*/, translate.translate(snap.val().text, lang.code)];
+                            case 0: return [4, translate.translate(snap.val().text, lang.code)];
                             case 1:
                                 translation = (_a.sent())[0];
                                 location = "translations/" + lang.code + "/" + snap.ref.key;
@@ -65,11 +65,11 @@ exports.translateMesages = functions.database.ref('messages/{id}').onWrite(funct
                                     photoUrl: snap.val().photoUrl
                                 };
                                 snap.ref.root.child(location).set(data);
-                                return [2 /*return*/];
+                                return [2];
                         }
                     });
                 }); });
-                return [2 /*return*/, Promise.all(work)];
+                return [2, Promise.all(work)];
         }
     });
 }); });
